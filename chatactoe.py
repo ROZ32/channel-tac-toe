@@ -5,7 +5,6 @@
 # pylint: disable-msg=C6310
 
 """Channel Tic Tac Toe
-
 This module demonstrates the App Engine Channel API by implementing a
 simple tic-tac-toe game.
 """
@@ -15,7 +14,7 @@ import logging
 import os
 import random
 import re
-from django.utils import simplejson
+import json
 from google.appengine.api import channel
 from google.appengine.api import users
 from google.appengine.ext import db
@@ -65,7 +64,7 @@ class GameUpdater():
       'winner': self.game.winner,
       'winningBoard': self.game.winning_board
     }
-    return simplejson.dumps(gameUpdate)
+    return json.dumps(gameUpdate)
 
   def send_update(self):
     message = self.get_game_message()
